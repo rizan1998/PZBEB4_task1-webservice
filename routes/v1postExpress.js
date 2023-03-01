@@ -1,0 +1,42 @@
+const express = require("express");
+
+const routesApi = express.Router();
+
+const EmployeeCtrl = require("../controller/employee");
+const cookieController = require("../controller/cookie");
+
+const multer = require("multer");
+
+const multerUpload = multer({
+  dest: "public/images/",
+});
+
+// let ourProduct = [
+//   {
+//     id: 1,
+//     name: "Samsung Galaxy A53",
+//     price: 6000000,
+//   },
+// ];
+
+// get all product
+
+routesApi.get("/", EmployeeCtrl.welcome);
+
+routesApi.get("/employee", EmployeeCtrl.fetchAll);
+
+routesApi.get("/employee/:id", EmployeeCtrl.fetchOne);
+
+routesApi.post("/employee", EmployeeCtrl.create);
+
+routesApi.post("/employee/upload", multerUpload.single("image"), EmployeeCtrl.upload);
+
+routesApi.put("/employee/:id", EmployeeCtrl.update);
+
+routesApi.delete("/employee/:id", EmployeeCtrl.destroy);
+
+routesApi.get("/cookies-read", cookieController.cookieReader);
+routesApi.get("/cookies-send", cookieController.cookieSave);
+routesApi.get("/session-send", cookieController.sessionSave);
+
+module.exports = routesApi;

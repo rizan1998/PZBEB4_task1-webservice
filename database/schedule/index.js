@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const dbPath = path.resolve(__dirname, "./employes.json");
+const dbPath = path.resolve(__dirname, "./schedule.json");
 
 function fetchAll() {
   const data = fs.readFileSync(dbPath);

@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 const app = express();
 
 // global middleware
@@ -8,6 +9,7 @@ const errHandling = require("./middleware/errHandling");
 
 app.use(bodyParser.json());
 app.use(showtime);
+app.use(cors());
 
 // route
 const routesV1PostExpress = require("./routes/v1postExpress.js");
